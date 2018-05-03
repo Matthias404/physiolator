@@ -29,6 +29,9 @@ public class RollenderBall extends PhysicalSystem {
 	@V(unit="m", derivative="v")
 	public double x= 0;
 	
+	@V(unit="m")
+	public double y= 0;
+	
 	@V(unit="m/s", derivative="a")
 	public double v= 2.3;
 	
@@ -73,6 +76,14 @@ public class RollenderBall extends PhysicalSystem {
 		});
 		}
 
+	public void r(double t, AfterEventDescription afterEventDescription) {
+		if (v > y)
+		afterEventDescription.reportEvent(() -> {
+		Fr = Fr*-1;
+		v = v*-1;
+		});
+		}
+	
 	public static void main(String[] args) {
 		start();
 
